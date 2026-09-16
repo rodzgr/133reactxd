@@ -1,0 +1,9 @@
+.banner {
+  margin: 24px auto;
+}
+
+.banner .carousel-inner {
+  border-radius: var(--radio);
+  overflow: hidden;
+  box-shadow: var(--sombra);
+}

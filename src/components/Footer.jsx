@@ -1,18 +1,24 @@
 import React from 'react'
+import '../styles/Footer.css'
+import { NavLink } from 'react-router-dom'
 
 export const Footer = () => {
+  const anioActual = new Date().getFullYear()
+
   return (
-    <div className="container">
-        <footer className="py-3 my-4">
-            <ul className="nav justify-content-center border-bottom pb-3 mb-3">
-            <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Horarios</a></li>
-            <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Tipos de comidas</a></li>
-            <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Servicios</a></li>
-            <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">FAQs</a></li>
-            <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Contáctenos</a></li>
-            </ul>
-            <p className="text-center text-muted">&copy; 2023 derechos reservados: Franz Denilson Ayala Isidro</p>
-        </footer>
-    </div>
+    <footer className="site-footer">
+      <div className="contenedor">
+        <ul className="site-footer__enlaces">
+          <li><NavLink to="/horarios">Horarios</NavLink></li>
+          <li><NavLink to="/tipos-comida">Tipos de comidas</NavLink></li>
+          <li><NavLink to="/servicios">Servicios</NavLink></li>
+          <li><NavLink to="/faqs">FAQs</NavLink></li>
+          <li><NavLink to="/mensajes">Contáctenos</NavLink></li>
+        </ul>
+        <p className="site-footer__copy">
+          &copy; {anioActual} Restaurante Caimán del Oriente — Franz Denilson Ayala Isidro
+        </p>
+      </div>
+    </footer>
   )
 }

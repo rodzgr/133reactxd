@@ -13,6 +13,11 @@ import { Colombiana } from './components/colombiana';
 import { Venezolana } from './components/venezolana';
 import { Espanola } from './components/espanola';
 import { Italiana } from './components/italiana';
+import { China } from './components/china'; ///////////////////
+import { Horarios } from './components/Horarios';
+import { TiposDeComida } from './components/TiposDeComida';
+import { Servicios } from './components/Servicios';
+import { Faqs } from './components/Faqs';
 
 function App() {
   return (
@@ -31,9 +36,14 @@ function App() {
           <Route exact path="/venez" element={<Venezolana/>}/>
           <Route exact path="/espa" element={<Espanola/>}/>
           <Route exact path="/ita" element={<Italiana/>}/>
-       
+          <Route exact path="/china" element={<China/>}/>
+
           <Route exact path="/acercade" element={<AcercaDe/>}/>
           <Route exact path="/mensajes" element={<Mensajes/>}/>
+          <Route exact path="/horarios" element={<Horarios/>}/>
+          <Route exact path="/tipos-comida" element={<TiposDeComida/>}/>
+          <Route exact path="/servicios" element={<Servicios/>}/>
+          <Route exact path="/faqs" element={<Faqs/>}/>
           <Route exact path="*" element={<ErrorNotFound/>}/>
         </Routes>
       </BrowserRouter>

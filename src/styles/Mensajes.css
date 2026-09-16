@@ -1,0 +1,48 @@
+.mensajes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  padding: 48px 20px;
+}
+
+.mensajes__formulario {
+  flex: 1 1 360px;
+  background: #fff;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: 28px;
+  box-shadow: var(--sombra);
+}
+
+.mensajes__input {
+  display: block;
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border: 1px solid var(--color-borde);
+  border-radius: 6px;
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+}
+
+.mensajes__confirmacion {
+  margin-top: 14px;
+  color: var(--color-primario);
+  font-weight: 600;
+}
+
+.mensajes__historial {
+  flex: 1 1 320px;
+}
+
+.mensajes__historial ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mensajes__historial li {
+  padding: 12px 0;
+  border-top: 1px solid var(--color-borde);
+  font-size: 0.92rem;
+}

@@ -1,0 +1,25 @@
+.acerca {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: center;
+  padding: 48px 20px;
+}
+
+.acerca__texto {
+  flex: 1 1 320px;
+}
+
+.acerca__texto p {
+  font-size: 1.05rem;
+}
+
+.acerca__imagen {
+  flex: 1 1 260px;
+  max-width: 320px;
+}
+
+.acerca__imagen img {
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}

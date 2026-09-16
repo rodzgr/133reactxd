@@ -1,64 +1,91 @@
 import React, { useState, useEffect } from 'react'
-import { Footer } from './Footer';
+import { Footer } from './Footer'
+import '../styles/Mensajes.css'
+const obtenerRegistros = () => {
+  const datos = localStorage.getItem('registros')
+  return datos ? JSON.parse(datos) : []
+}
+
 export const Mensajes = () => {
+  const [registros, setRegistros] = useState(obtenerRegistros())
+  const [nombre, setNombre] = useState('')
+  const [correo, setCorreo] = useState('')
+  const [mensaje, setMensaje] = useState('')
+  const [enviado, setEnviado] = useState(false)
 
-  const obtenerRegistros = () => {
-    var datos = localStorage.getItem("registros");
-    if(datos){
-      return JSON.parse(datos);
-    }else{
-      return [];
-    }
-  }
+  const enviarMensaje = (evento) => {
+    evento.preventDefault()
 
-  const [registros, setRegistros] = useState(obtenerRegistros());
+    const nuevoRegistro = { nombre, correo, mensaje }
+    setRegistros([...registros, nuevoRegistro])
 
-  const [nombre, setNombre] = useState("");
-  const [correo, setCorreo] = useState("");
-  const [mensaje, setMensaje] = useState("");
+    setNombre('')
+    setCorreo('')
+    setMensaje('')
 
-  const botonGuardar = (e) => {
-    e.preventDefault();
-    var miObjeto = { nombre, correo, mensaje }
-    setRegistros([...registros, miObjeto]);
-    limpiarFormulario();
-  }
-
-  function botonGuardarSimple(e){
-    e.preventDefault();
-    var miObjeto = { nombre, correo, mensaje }
-    setRegistros([...registros, miObjeto]);
-    limpiarFormulario();
-  }
-
-
-  const limpiarFormulario = () => {
-    setNombre("");
-    setCorreo("");
-    setMensaje("");
-    document.getElementById("miFormulario").reset();
+    setEnviado(true)
+    setTimeout(() => setEnviado(false), 3000)
   }
 
   useEffect(() => {
-    localStorage.setItem("registros", JSON.stringify(registros));
-  }, [registros]);
-
+    localStorage.setItem('registros', JSON.stringify(registros))
+  }, [registros])
 
   return (
-      <center>
-        <div className="container" style={{width:"70%", marginTop:20, background:"yellow", padding:20}}>
-            <form id="miFormulario" onSubmit={botonGuardarSimple}>
-                <h1 className='h1'>Mensajes</h1>
-                <input style={{marginBottom:20}} className="form-control form-control-lg" type="text" placeholder="Digite su Nombre" onChange={(e)=>setNombre(e.target.value)} />
-                <input style={{marginBottom:20}} className="form-control form-control-lg" type="email" placeholder="Digite su Correo" onChange={(e)=>setCorreo(e.target.value)} />
-                <textarea style={{marginBottom:20}} className="form-control form-control-lg" placeholder="Digite su Mensaje" onChange={(e)=>setMensaje(e.target.value)}>
-                </textarea>
+    <div>
+      <div className="contenedor mensajes">
+        <form className="mensajes__formulario" onSubmit={enviarMensaje}>
+          <h1>Déjanos un mensaje</h1>
 
-                <button className='btn btn-dark btn-lg'>
-                    Enviar Mensaje
-                </button>
-            </form>
-        </div><Footer/>
-    </center>
+          <input
+            className="mensajes__input"
+            type="text"
+            placeholder="Tu nombre"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+            required
+          />
+          <input
+            className="mensajes__input"
+            type="email"
+            placeholder="Tu correo"
+            value={correo}
+            onChange={(e) => setCorreo(e.target.value)}
+            required
+          />
+          <textarea
+            className="mensajes__input"
+            placeholder="Tu mensaje"
+            value={mensaje}
+            onChange={(e) => setMensaje(e.target.value)}
+            rows={4}
+            required
+          />
+
+          <button className="boton boton--principal" type="submit">
+            Enviar mensaje
+          </button>
+
+          {enviado && (
+            <p className="mensajes__confirmacion">¡Gracias! Tu mensaje fue enviado.</p>
+          )}
+        </form>
+
+        {registros.length > 0 && (
+          <div className="mensajes__historial">
+            <h2>Mensajes recibidos ({registros.length})</h2>
+            <ul>
+              {registros.map((registro, indice) => (
+                <li key={indice}>
+                  <strong>{registro.nombre}</strong> ({registro.correo}): {registro.mensaje}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
+      <Footer />
+    </div>
   )
 }
